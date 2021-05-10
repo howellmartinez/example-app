@@ -9,6 +9,8 @@ class Stage extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['description'];
+
     /**
      * Get the project that owns the stage.
      */

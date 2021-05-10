@@ -16,8 +16,7 @@ class CreateStagesTable extends Migration
         Schema::create('stages', function (Blueprint $table) {
             $table->id();
             $table->text('description');
-            $table->unsignedBigInteger('project_id');
-            $table->foreign('project_id')->references('id')->on('projects');
+            $table->foreignId('project_id')->constrained()->onDelete('CASCADE');
             $table->timestamps();
         });
     }
