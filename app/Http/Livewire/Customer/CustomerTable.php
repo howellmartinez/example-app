@@ -31,7 +31,7 @@ class CustomerTable extends Component
         $this->toDelete->delete();
         $this->toDelete = null;
         $this->confirmingDelete = false;
-        session()->flash('message', 'Customer deleted.');
+        session()->flash('banner', 'Sales Order deleted.');
     }
 
     public function updatingSearch()

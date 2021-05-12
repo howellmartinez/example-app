@@ -4,12 +4,18 @@ namespace App\Http\Livewire;
 
 trait WithSorting
 {
-    public $sortField = 'name';
+    public $sortField = 'id';
     public $sortAsc = true;
+    public $query;
 
     public function mountWithSorting()
     {
         array_push($this->queryString, 'sortField', 'sortAsc');
+    }
+
+    public function getSortDirectionProperty()
+    {
+        return $this->sortAsc ? 'ASC' : 'DESC';
     }
 
     public function sortBy($field)

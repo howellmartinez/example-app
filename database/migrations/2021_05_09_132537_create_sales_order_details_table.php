@@ -16,7 +16,10 @@ class CreateSalesOrderDetailsTable extends Migration
         Schema::create('sales_order_details', function (Blueprint $table) {
             $table->id();
             $table->integer('quantity');
-            $table->foreignId('customer_id')->constrained();
+            $table->integer('unit_price');
+            $table->integer('line_total');
+            $table->foreignId('product_id')->constrained();
+            $table->foreignId('sales_order_id')->constrained()->onDelete('CASCADE');
             $table->timestamps();
         });
     }

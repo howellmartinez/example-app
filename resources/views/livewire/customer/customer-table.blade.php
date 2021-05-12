@@ -42,8 +42,8 @@
           </thead>
           <tbody>
             <!-- Odd row -->
-            @foreach($customers as $index => $customer)
-            <tr x-data="{ even: {{$index}} % 2 == 0 }" :class="{'bg-gray-50': even }">
+            @foreach($customers as $customer)
+            <tr x-data="{{ json_encode(['even' => $loop->even]) }}" :class="{'bg-gray-50': even }">
               <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                 {{ $customer->id }}
               </td>

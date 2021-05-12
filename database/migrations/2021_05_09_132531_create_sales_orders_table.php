@@ -17,6 +17,7 @@ class CreateSalesOrdersTable extends Migration
             $table->id();
             $table->foreignId('customer_id')->constrained();
             $table->date('date');
+            $table->integer('total');
             $table->timestamps();
         });
     }
