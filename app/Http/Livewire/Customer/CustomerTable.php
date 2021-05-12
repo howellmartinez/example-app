@@ -47,10 +47,11 @@ class CustomerTable extends Component
     public function render()
     {
         return view('livewire.customer.customer-table', [
-            'customers' => Customer::where('name', 'like', "%{$this->search}%")
-                ->when($this->sortField, function ($query) {
-                    $query->orderBy($this->sortField, $this->sortAsc ? 'ASC' : 'DESC');
-                })->paginate(20)
+            'customers' => Customer::when($this->search, function ($query) {
+                return $query->filterBy('filter', "%{$this->search}%", 'like');
+            })->when($this->sortField, function ($query) {
+                return $query->sortBy($this->sortField, $this->sortDirection);
+            })->paginate(20)
         ]);
     }
 }

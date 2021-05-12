@@ -41,21 +41,12 @@ class SalesOrderTable extends Component
 
     public function render()
     {
-        // todo canfilterby trait
         return view('livewire.sales-order.sales-order-table', [
-            'salesOrders' => SalesOrder::when($this->sortField, function ($query) {
+            'salesOrders' => SalesOrder::when($this->search, function ($query) {
+                return $query->filterBy('filter', "%{$this->search}%", 'like');
+            })->when($this->sortField, function ($query) {
                 return $query->sortBy($this->sortField, $this->sortDirection);
             })->paginate(20)
         ]);
     }
-
-    // public function render()
-    // {
-    //     return view('livewire.sales-order.sales-order-table', [
-    //         'salesOrders' => SalesOrder::where('date', 'like', "%{$this->search}%")
-    //             ->when($this->sortField, function ($query) {
-    //                 $query->orderBy($this->sortField, $this->sortAsc ? 'ASC' : 'DESC');
-    //             })->paginate(20)
-    //     ]);
-    // }
 }
