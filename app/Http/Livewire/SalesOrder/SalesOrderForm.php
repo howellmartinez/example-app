@@ -21,15 +21,15 @@ class SalesOrderForm extends Component
     ];
 
     protected $rules = [
-        'salesOrder.customer_id' => 'numeric',
-        'salesOrder.date' => 'date',
+        'salesOrder.customer_id' => 'required|numeric',
+        'salesOrder.date' => 'required|date',
    ];
 
     public function mount($salesOrder = null)
     {
         if ($salesOrder === null) {
             $this->isEdit = false;
-            $this->salesOrder = new SalesOrder();
+            $this->salesOrder = new SalesOrder(['date' =>today()->toDateString()]);
         } else {
             // https://github.com/livewire/livewire/issues/2749
             $this->salesOrderDetails = $this->salesOrder->salesOrderDetails->all();
@@ -48,17 +48,14 @@ class SalesOrderForm extends Component
 
     public function save()
     {
-        $this->validate([
-            'salesOrder.customer_id' => 'required',
-            'salesOrder.date' => 'required',
-        ]);
+        $this->validate();
 
         $this->salesOrder->total = collect($this->salesOrderDetails)->sum(fn ($d) => $d['quantity'] * $d['unit_price']);
         $this->salesOrder->save();
         $this->salesOrder->salesOrderDetails()->sync($this->salesOrderDetails);
        
         if (!$this->isEdit) {
-            $this->salesOrder = new SalesOrder();
+            $this->salesOrder = new SalesOrder(['date' =>today()->toDateString()]);
             $this->salesOrderDetails = [];
         }
     }

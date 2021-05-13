@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Livewire\SalesOrder;
+namespace App\Http\Livewire\SalesDelivery;
 
 use Livewire\Component;
 use App\Models\Product;
+use App\Models\WarehouseProduct;
 
-class SalesOrderDetailModal extends Component
+class SalesDeliveryDetailModal extends Component
 {
-    public $productId = null;
+    public $productWarehouseId = null;
     public $quantity = 0;
     public $unitPrice = 0;
 
@@ -15,9 +16,10 @@ class SalesOrderDetailModal extends Component
     public $show = false;
     public $isEdit = false;
     public $detailIndex = null;
+    public $warehouseId = null;
 
     protected $rules = [
-        'productId' => 'required|numeric',
+        'productWarehouseId' => 'required|numeric',
         'quantity' => 'required|numeric',
         'unitPrice' => 'required|numeric',
     ];
@@ -32,19 +34,20 @@ class SalesOrderDetailModal extends Component
         $this->unitPrice = Product::find($val)->unit_price;
     }
 
-    public function showModal($index = null, $salesOrderDetail = null)
+    public function showModal($warehouseId, $index = null, $salesDeliveryDetail = null)
     {
-        if ($salesOrderDetail !== null) {
+        if ($salesDeliveryDetail !== null) {
             $this->isEdit = true;
             $this->fill([
-                'productId' => $salesOrderDetail['product_id'],
-                'quantity' => $salesOrderDetail['quantity'],
-                'unitPrice' => $salesOrderDetail['unit_price'],
+                'productWarehouseId' => $salesDeliveryDetail['product_warehouse_id'],
+                'quantity' => $salesDeliveryDetail['quantity'],
+                'unitPrice' => $salesDeliveryDetail['unit_price'],
             ]);
         } else {
             $this->reset();
         }
         
+        $this->warehouseId = $warehouseId;
         $this->detailIndex = $index;
         $this->show = true;
     }
@@ -53,23 +56,25 @@ class SalesOrderDetailModal extends Component
     {
         $this->validate();
         $payload = [
-            'product_id' => $this->productId,
+            'product_warehouse_id' => $this->productWarehouseId,
             'quantity' => $this->quantity,
             'unit_price' => $this->unitPrice,
-            'line_total' => $this->lineTotal
+            'line_total' => $this->lineTotal,
         ];
         if ($this->isEdit) {
-            $this->emit('editSalesOrderDetail', $this->detailIndex, $payload);
+            $this->emit('editSalesDeliveryDetail', $this->detailIndex, $payload);
         } else {
-            $this->emit('addSalesOrderDetail', $payload);
+            $this->emit('addSalesDeliveryDetail', $payload);
         }
         $this->show = false;
     }
 
     public function render()
     {
-        return view('livewire.sales-order.sales-order-detail-modal', [
-            'products' => Product::select('id', 'name', 'unit_price')->get(),
+        return view('livewire.sales-delivery.sales-delivery-detail-modal', [
+            'warehouseProducts' => WarehouseProduct::with('product')
+                ->whereWarehouseId($this->warehouseId)
+                ->get()
         ]);
     }
 }

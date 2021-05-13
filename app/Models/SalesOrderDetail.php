@@ -9,16 +9,18 @@ class SalesOrderDetail extends Model
 {
     use HasFactory;
 
-    public $fillable = ['product_id', 'quantity', 'unit_price', 'line_total'];
-
-    protected static function booted()
-    {
-        static::saving(function ($model) {
-            $model->line_total = $model->quantity * $model->unit_price;
-        });
-    }
+    public $fillable = ['product_id', 'quantity', 'unit_price', 'line_total', 'delivered'];
 
     public $timestamps = false;
+
+    protected $attributes = ['cancelled' => false, 'delivered' => 0];
+
+    // protected static function booted()
+    // {
+    //     static::creating(function ($model) {
+    //         $model->cancelled = false;
+    //     });
+    // }
 
     public function product()
     {
@@ -28,5 +30,20 @@ class SalesOrderDetail extends Model
     public function salesOrder()
     {
         return $this->belongsTo(SalesOrder::class);
+    }
+
+    public function salesDeliveryDetails()
+    {
+        return $this->hasMany(SalesDeliveryDetail::class);
+    }
+
+    public function updateDelivered()
+    {
+        $this->update(['delivered' => $this->salesDeliveryDetails()->sum('quantity')]);
+    }
+
+    public function scopePending($query)
+    {
+        return $query->whereRaw('delivered < quantity')->where('cancelled', false);
     }
 }

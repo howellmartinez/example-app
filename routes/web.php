@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\SalesOrderController;
+use App\Http\Controllers\SalesDeliveryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,10 @@ Route::get('/projects', function () {
     ]);
 });
 
+Route::get('/sales-deliveries', [SalesDeliveryController::class, 'index']);
+Route::get('/sales-deliveries/create', [SalesDeliveryController::class, 'create']);
+Route::get('/sales-deliveries/{salesDelivery}/edit', [SalesDeliveryController::class, 'edit']);
+Route::get('/sales-deliveries/{salesDelivery}', [SalesDeliveryController::class, 'show']);
 
 Route::get('/sales-orders', [SalesOrderController::class, 'index']);
 Route::get('/sales-orders/create', [SalesOrderController::class, 'create']);

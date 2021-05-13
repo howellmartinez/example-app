@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Livewire\SalesOrder;
+namespace App\Http\Livewire\SalesDelivery;
 
 use Livewire\Component;
 use Livewire\WithPagination;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\SalesOrder;
+use App\Models\SalesDelivery;
 use App\Http\Livewire\WithSorting;
 
-class SalesOrderTable extends Component
+class SalesDeliveryTable extends Component
 {
     use WithPagination;
     use WithSorting;
@@ -31,7 +31,7 @@ class SalesOrderTable extends Component
         $this->toDelete->delete();
         $this->toDelete = null;
         $this->confirmingDelete = false;
-        session()->flash('message', 'SalesOrder deleted.');
+        session()->flash('message', 'SalesDelivery deleted.');
     }
 
     public function updatingSearch()
@@ -41,8 +41,8 @@ class SalesOrderTable extends Component
 
     public function render()
     {
-        return view('livewire.sales-order.sales-order-table', [
-            'salesOrders' => SalesOrder::when($this->search, function ($query) {
+        return view('livewire.sales-delivery.sales-delivery-table', [
+            'salesDeliveries' => SalesDelivery::when($this->search, function ($query) {
                 // return $query->search("%{$this->search}%", 'like');
                 return $query->filterBy('search', "%{$this->search}%", 'like');
             })->when($this->sortField, function ($query) {

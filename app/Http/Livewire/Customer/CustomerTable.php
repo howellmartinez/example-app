@@ -48,7 +48,7 @@ class CustomerTable extends Component
     {
         return view('livewire.customer.customer-table', [
             'customers' => Customer::when($this->search, function ($query) {
-                return $query->filterBy('filter', "%{$this->search}%", 'like');
+                return $query->filterBy('search', "%{$this->search}%", 'like');
             })->when($this->sortField, function ($query) {
                 return $query->sortBy($this->sortField, $this->sortDirection);
             })->paginate(20)

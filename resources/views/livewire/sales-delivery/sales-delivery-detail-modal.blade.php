@@ -1,16 +1,16 @@
 <div>
   <x-jet-dialog-modal wire:model="show">
     <x-slot name="title">
-      Sales Order Detail
+      Sales Delivery Detail
     </x-slot>
 
     <x-slot name="content">
       <div class="mt-4">
-        <select for="productId" wire:model="productId">
+        <select for="productWarehouseId" wire:model="productWarehouseId">
           <option value="{{ null }}" selected></option>
-          @foreach($products as $product)
-          <option value="{{ $product->id }}">
-            {{ $product->name }}
+          @foreach($warehouseProducts as $warehouseProduct)
+          <option value="{{ $warehouseProduct->id }}">
+            {{ $warehouseProduct->product->name }}
           </option>
           @endforeach
         </select>

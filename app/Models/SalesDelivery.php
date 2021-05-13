@@ -8,24 +8,32 @@ use App\Model\MyBaseModel;
 use App\Model\Traits\CanSortBy;
 use App\Model\Traits\CanFilterBy;
 
-class SalesOrder extends MyBaseModel
+class SalesDelivery extends MyBaseModel
 {
     use HasFactory;
-    use CanSortBy;
     use CanFilterBy;
+    use CanSortBy;
 
-    public $fillable = ['customer_id', 'date'];
+    public $fillable = [
+        'customer_id', 'warehouse_id',
+        'date', 'total', 'remarks'
+    ];
 
-    protected $searchable = ['customer_name', 'id', 'date'];
+    protected $searchable = ['customer_name', 'date'];
 
     public function customer()
     {
         return $this->belongsTo(Customer::class);
     }
 
-    public function salesOrderDetails()
+    public function warehouse()
     {
-        return $this->hasMany(SalesOrderDetail::class);
+        return $this->belongsTo(Warehouse::class);
+    }
+
+    public function salesDeliveryDetails()
+    {
+        return $this->hasMany(SalesDeliveryDetail::class);
     }
 
     public function scopeCustomerName($query, $value, $operator = '=')
@@ -37,8 +45,8 @@ class SalesOrder extends MyBaseModel
 
     public function scopeSortByCustomerName($query, $direction)
     {
-        return $query->join('customers', 'customers.id', 'sales_orders.customer_id')
-            ->select('customers.name as customer_name', 'sales_orders.*')
+        return $query->join('customers', 'customers.id', 'sales_deliveries.customer_id')
+            ->select('customers.name as customer_name', 'sales_deliveries.*')
             ->orderBy('customer_name', $direction);
     }
 }

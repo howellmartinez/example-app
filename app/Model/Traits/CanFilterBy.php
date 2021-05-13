@@ -4,19 +4,19 @@ namespace App\Model\Traits;
 
 trait CanFilterBy
 {
-    protected function getFilters()
+    protected function getSearchables()
     {
-        return $this->filters ?? [];
+        return $this->searchable ?? [];
     }
 
-    public function scopeFilter($query, $value, $operator = '=')
+    public function scopeSearch($query, $value, $operator = '=')
     {
-        foreach ($this->getFilters() as $index => $filter) {
+        foreach ($this->getSearchables() as $index => $searchable) {
             if ($index == 0) {
-                $query->filterBy($filter, $value, $operator);
+                $query->filterBy($searchable, $value, $operator);
             } else {
-                $query->orWhere(function ($query) use ($filter, $value, $operator) {
-                    $query->filterBy($filter, $value, $operator);
+                $query->orWhere(function ($query) use ($searchable, $value, $operator) {
+                    $query->filterBy($searchable, $value, $operator);
                 });
             }
         }

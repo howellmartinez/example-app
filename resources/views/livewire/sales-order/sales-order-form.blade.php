@@ -3,7 +3,7 @@
     <select wire:model.defer="salesOrder.customer_id">
       <option value="{{ null }}" selected></option>
       @foreach($customers as $customer)
-      <option id="{{ $customer->id }}" value="{{ $customer->id }}">
+      <option value="{{ $customer->id }}">
         {{ $customer->name }}
       </option>
       @endforeach

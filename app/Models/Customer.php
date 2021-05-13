@@ -15,7 +15,7 @@ class Customer extends Model
 
     public $fillable = ['name'];
 
-    protected $filters = ['name', 'address'];
+    protected $searchable = ['name', 'address'];
 
     public function salesOrder()
     {
