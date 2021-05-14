@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Model\MyBaseModel;
+use CometOneSolutions\Common\Models\C1Model;
 use App\Model\Traits\CanSortBy;
 use App\Model\Traits\CanFilterBy;
 
-class SalesOrder extends MyBaseModel
+class SalesOrder extends C1Model
 {
     use HasFactory;
     use CanSortBy;

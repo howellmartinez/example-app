@@ -33,7 +33,7 @@
         <tr>
           <td>{{ $index + 1 }}</td>
           <td>
-            {{ App\Models\WarehouseProduct::with('product')->find($salesDeliveryDetail['product_warehouse_id'])->product->name }}
+            {{ App\Models\WarehouseProduct::with('product')->find($salesDeliveryDetail['warehouse_product_id'])->product->name }}
           </td>
           <td>{{ $salesDeliveryDetail['quantity'] }}</td>
           <td>{{ $salesDeliveryDetail['unit_price'] }}</td>

@@ -6,7 +6,7 @@
 
     <x-slot name="content">
       <div class="mt-4">
-        <select for="productWarehouseId" wire:model="productWarehouseId">
+        <select for="warehouseProductId" wire:model="warehouseProductId">
           <option value="{{ null }}" selected></option>
           @foreach($warehouseProducts as $warehouseProduct)
           <option value="{{ $warehouseProduct->id }}">

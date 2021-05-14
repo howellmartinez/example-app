@@ -62,7 +62,7 @@
                 {{ $salesDelivery->customer->name }}
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                <a href="/sales-orders/{{ $salesDelivery->id }}">
+                <a href="/sales-deliveries/{{ $salesDelivery->id }}">
                   <button type="button"
                     class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none">
                     <!-- Heroicon name: solid/eye -->
@@ -74,7 +74,7 @@
                     </svg>
                   </button>
                 </a>
-                <a href="/sales-orders/{{ $salesDelivery->id }}/edit">
+                <a href="/sales-deliveries/{{ $salesDelivery->id }}/edit">
                   <button type="button"
                     class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none">
                     <!-- Heroicon name: solid/mail -->

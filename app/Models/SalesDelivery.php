@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Model\MyBaseModel;
+use CometOneSolutions\Common\Models\C1Model;
 use App\Model\Traits\CanSortBy;
 use App\Model\Traits\CanFilterBy;
 
-class SalesDelivery extends MyBaseModel
+class SalesDelivery extends C1Model
 {
     use HasFactory;
     use CanFilterBy;
@@ -20,6 +20,13 @@ class SalesDelivery extends MyBaseModel
     ];
 
     protected $searchable = ['customer_name', 'date'];
+
+    protected static function booted()
+    {
+        static::deleting(function ($model) {
+            $model->salesDeliveryDetails->each->delete();
+        });
+    }
 
     public function customer()
     {

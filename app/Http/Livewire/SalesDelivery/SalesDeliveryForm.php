@@ -41,7 +41,7 @@ class SalesDeliveryForm extends Component
         }
     }
 
-    public function toProductWarehouseId($productId)
+    public function toWarehouseProductId($productId)
     {
         if ($this->salesDelivery->warehouse_id == null || $productId == null) {
             return null;
@@ -67,7 +67,7 @@ class SalesDeliveryForm extends Component
             $this->salesDeliveryDetails[] = SalesDeliveryDetail::make([
                 'sales_order_detail_id' => $salesOrderDetail['id'],
                 'quantity' => $salesOrderDetail['to_deliver'],
-                'product_warehouse_id' => $this->toProductWarehouseId($salesOrderDetail['product_id']),
+                'warehouse_product_id' => $this->toWarehouseProductId($salesOrderDetail['product_id']),
                 'unit_price' =>$salesOrderDetail['unit_price'],
                 'line_total' => $salesOrderDetail['unit_price'] * $salesOrderDetail['to_deliver'],
             ]);
@@ -82,9 +82,10 @@ class SalesDeliveryForm extends Component
         $this->salesDelivery->save();
 
         $results = $this->salesDelivery->salesDeliveryDetails()->sync($this->salesDeliveryDetails);
-
-        SalesOrderDetail::whereHas('salesDeliveryDetails', fn ($sdd) => $sdd->whereIn('id', \Arr::flatten($results)))
-            ->cursor()->each->updateDelivered();
+        
+        // SalesOrderDetail::whereHas('salesDeliveryDetails', function ($sdd) use ($results) {
+        //     return $sdd->whereIn('id', \Arr::flatten($results));
+        // })->cursor()->each->updateDelivered();
 
         if (!$this->isEdit) {
             $this->salesDelivery = new SalesDelivery(['date' => today()->toDateString()]);

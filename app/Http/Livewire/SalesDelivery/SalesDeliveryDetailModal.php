@@ -8,7 +8,7 @@ use App\Models\WarehouseProduct;
 
 class SalesDeliveryDetailModal extends Component
 {
-    public $productWarehouseId = null;
+    public $warehouseProductId = null;
     public $quantity = 0;
     public $unitPrice = 0;
 
@@ -19,7 +19,7 @@ class SalesDeliveryDetailModal extends Component
     public $warehouseId = null;
 
     protected $rules = [
-        'productWarehouseId' => 'required|numeric',
+        'warehouseProductId' => 'required|numeric',
         'quantity' => 'required|numeric',
         'unitPrice' => 'required|numeric',
     ];
@@ -39,7 +39,7 @@ class SalesDeliveryDetailModal extends Component
         if ($salesDeliveryDetail !== null) {
             $this->isEdit = true;
             $this->fill([
-                'productWarehouseId' => $salesDeliveryDetail['product_warehouse_id'],
+                'warehouseProductId' => $salesDeliveryDetail['warehouse_product_id'],
                 'quantity' => $salesDeliveryDetail['quantity'],
                 'unitPrice' => $salesDeliveryDetail['unit_price'],
             ]);
@@ -56,7 +56,7 @@ class SalesDeliveryDetailModal extends Component
     {
         $this->validate();
         $payload = [
-            'product_warehouse_id' => $this->productWarehouseId,
+            'warehouse_product_id' => $this->warehouseProductId,
             'quantity' => $this->quantity,
             'unit_price' => $this->unitPrice,
             'line_total' => $this->lineTotal,

@@ -20,7 +20,7 @@ class SalesOrderTable extends Component
 
     public $queryString = ['search'];
 
-    public function confirmDelete(Model $model)
+    public function confirmDelete(SalesOrder $model)
     {
         $this->confirmingDelete = true;
         $this->toDelete = $model;

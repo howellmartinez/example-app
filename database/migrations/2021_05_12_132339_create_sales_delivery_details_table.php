@@ -15,9 +15,9 @@ class CreateSalesDeliveryDetailsTable extends Migration
     {
         Schema::create('sales_delivery_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('sales_delivery_id')->constrained()->onCascade('DELETE');
-            $table->foreignId('sales_order_detail_id')->nullable()->constrained()->onCascade('SET NULL');
-            $table->foreignId('product_warehouse_id')->constrained('product_warehouse');
+            $table->foreignId('sales_delivery_id')->constrained()->onDelete('CASCADE');
+            $table->foreignId('sales_order_detail_id')->nullable()->constrained()->onDelete('SET NULL');
+            $table->foreignId('warehouse_product_id')->constrained('warehouse_products');
             $table->decimal('quantity', 15, 2);
             $table->integer('unit_price');
             $table->integer('line_total');

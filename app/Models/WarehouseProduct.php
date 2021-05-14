@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class WarehouseProduct extends Model
 {
-    protected $table = 'product_warehouse';
+    protected $table = 'warehouse_products';
 
     use HasFactory;
 

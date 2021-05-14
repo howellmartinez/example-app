@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductWarehouseTable extends Migration
+class CreateWarehouseProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateProductWarehouseTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_warehouse', function (Blueprint $table) {
+        Schema::create('warehouse_products', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->constrained();
             $table->foreignId('warehouse_id')->constrained();
@@ -29,6 +29,6 @@ class CreateProductWarehouseTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_warehouse');
+        Schema::dropIfExists('warehouse_products');
     }
 }

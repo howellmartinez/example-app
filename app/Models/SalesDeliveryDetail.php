@@ -9,15 +9,24 @@ class SalesDeliveryDetail extends Model
 {
     use HasFactory;
     use \Znck\Eloquent\Traits\BelongsToThrough;
+    use HasWarehouseProduct;
 
-    public $fillable = ['product_warehouse_id', 'quantity', 'unit_price', 'line_total', 'sales_order_detail_id'];
+    public $fillable = ['warehouse_product_id', 'quantity', 'unit_price', 'line_total', 'sales_order_detail_id'];
 
     public $timestamps = false;
 
     protected static function booted()
     {
-        static::updated(function ($model) {
-            dd('hi');
+        static::saved(function ($model) {
+            if ($model->salesOrderDetail()->exists()) {
+                $model->salesOrderDetail->updateDelivered();
+            }
+        });
+
+        static::deleted(function ($model) {
+            if ($model->salesOrderDetail()->exists()) {
+                $model->salesOrderDetail->updateDelivered();
+            }
         });
     }
 
