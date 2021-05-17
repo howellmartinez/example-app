@@ -377,6 +377,10 @@
         </div>
       </div>
 
+      @if (isset($breadcrumbs))
+      {{ $breadcrumbs }}
+      @endif
+
       <main class="flex-1 relative overflow-y-auto focus:outline-none">
         <div class="py-6">
           @if (isset($header))

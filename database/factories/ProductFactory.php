@@ -23,9 +23,11 @@ class ProductFactory extends Factory
      */
     public function definition()
     {
+        $unitPrice =random_int(1, 100); 
         return [
             'name' => $this->faker->name,
-            'unit_price' => random_int(1, 100),
+            'unit_price' => $unitPrice,
+            'unit_cost' => $unitPrice * .9,
         ];
     }
 }

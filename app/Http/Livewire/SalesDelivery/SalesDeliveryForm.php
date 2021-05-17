@@ -68,7 +68,8 @@ class SalesDeliveryForm extends Component
                 'sales_order_detail_id' => $salesOrderDetail['id'],
                 'quantity' => $salesOrderDetail['to_deliver'],
                 'warehouse_product_id' => $this->toWarehouseProductId($salesOrderDetail['product_id']),
-                'unit_price' =>$salesOrderDetail['unit_price'],
+                'unit_price' => $salesOrderDetail['unit_price'],
+                'unit_cost' => Product::find($salesOrderDetail['product_id'])->unit_cost,
                 'line_total' => $salesOrderDetail['unit_price'] * $salesOrderDetail['to_deliver'],
             ]);
         }
@@ -80,9 +81,7 @@ class SalesDeliveryForm extends Component
 
         $this->salesDelivery->total = collect($this->salesDeliveryDetails)->sum(fn ($sdd) => $sdd['quantity'] * $sdd['unit_price']);
         $this->salesDelivery->save();
-
         $results = $this->salesDelivery->salesDeliveryDetails()->sync($this->salesDeliveryDetails);
-        
         // SalesOrderDetail::whereHas('salesDeliveryDetails', function ($sdd) use ($results) {
         //     return $sdd->whereIn('id', \Arr::flatten($results));
         // })->cursor()->each->updateDelivered();

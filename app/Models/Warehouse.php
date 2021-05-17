@@ -5,9 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Warehouse extends Model
+use CometOneSolutions\Inventory\Contracts\Locationable;
+use CometOneSolutions\Inventory\Contracts\LocationType;
+use CometOneSolutions\Inventory\Traits\HasLocation;
+
+class Warehouse extends Model implements Locationable
 {
     use HasFactory;
+    use HasLocation;
 
     protected static function booted()
     {
@@ -22,4 +27,21 @@ class Warehouse extends Model
     {
         return $this->belongsToMany(Product::class, 'warehouse_products');
     }
+
+    /* ----- Locationable BEGIN ----- */
+    public function getId()
+    {
+        return $this->id;
+    }
+    // public function getLocation();
+    public function getLocationName()
+    {
+        return sprintf('%s %s', $this->name, 'Warehouse');
+    }
+
+    public function getLocationType()
+    {
+        return LocationType::IN;
+    }
+    /* ----- Locationable END ----- */
 }

@@ -3,17 +3,16 @@
 namespace App\Traits;
 
 use App\Models\Product;
-use App\Models\WarehouseProduct;
 use App\Models\Warehouse;
+use App\Models\WarehouseProduct;
 
 trait HasWarehouseProduct
 {
     use \Znck\Eloquent\Traits\BelongsToThrough;
 
-    protected static function bootedHasWarehouseProduct()
+    protected static function bootHasWarehouseProduct()
     {
         static::saved(function ($model) {
-            dd('hi');
             if ($model->isDirty('warehouse_product_id')) {
                 $originalWarehouseProduct = WarehouseProduct::find($model->getOriginal('warehouse_product_id'));
                 // Warehouse Product has changed

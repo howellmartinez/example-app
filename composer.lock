@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4228f577f3e44860b0061883c2c5bc60",
+    "content-hash": "40245d8b091ea6ee8996337a63366f7a",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -172,6 +172,114 @@
             "time": "2021-01-20T22:51:39+00:00"
         },
         {
+            "name": "cometonesolutions/accounting",
+            "version": "1.0.24",
+            "source": {
+                "type": "git",
+                "url": "https://gitlab.com/cometonesolutions/packages/accounting.git",
+                "reference": "dea2ae60dd00bf136e7ce4aaf322c78bf74bb9c4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://gitlab.com/api/v4/projects/23134099/packages/composer/archives/cometonesolutions/accounting.zip?sha=dea2ae60dd00bf136e7ce4aaf322c78bf74bb9c4",
+                "reference": "dea2ae60dd00bf136e7ce4aaf322c78bf74bb9c4",
+                "shasum": ""
+            },
+            "require": {
+                "cometonesolutions/auth": "^1.0",
+                "cometonesolutions/common": "^1.0.0",
+                "illuminate/database": "^6.0|^7.0|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^4.0|^5.0|^6.0",
+                "phpunit/phpunit": "^8.0|^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "CometOneSolutions\\Accounting\\Providers\\AccountingServiceProvider",
+                        "CometOneSolutions\\Accounting\\Providers\\AccountingEventServiceProvider",
+                        "CometOneSolutions\\Accounting\\Providers\\AccountingRouteServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "CometOneSolutions\\Accounting\\": "src"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "CometOneSolutions\\Accounting\\Test\\": "tests"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "phpunit"
+                ]
+            },
+            "authors": [
+                {
+                    "name": "CometOne Solutions",
+                    "email": "dev@cometonesolutions.com"
+                }
+            ],
+            "description": "Accounting backend module"
+        },
+        {
+            "name": "cometonesolutions/auth",
+            "version": "1.0.9",
+            "source": {
+                "type": "git",
+                "url": "https://gitlab.com/cometonesolutions/packages/auth.git",
+                "reference": "fccd41298137004e9e0072b13115b3bdb5747ea2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://gitlab.com/api/v4/projects/22991717/packages/composer/archives/cometonesolutions/auth.zip?sha=fccd41298137004e9e0072b13115b3bdb5747ea2",
+                "reference": "fccd41298137004e9e0072b13115b3bdb5747ea2",
+                "shasum": ""
+            },
+            "require": {
+                "cometonesolutions/common": "^1.0.0",
+                "guzzlehttp/guzzle": ">=6.0",
+                "illuminate/auth": ">=6.0.0",
+                "illuminate/database": ">=6.0.0",
+                "illuminate/notifications": ">=6.0.0",
+                "illuminate/routing": ">=6.0.0",
+                "illuminate/support": ">=6.0",
+                "illuminate/validation": ">=6.0.0",
+                "spatie/laravel-permission": ">=3.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^4.0|^5.0|^6.0",
+                "phpunit/phpunit": "^8.0|^9.0",
+                "psy/psysh": "@stable"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "CometOneSolutions\\Auth\\Providers\\C1SAuthServiceProvider",
+                        "CometOneSolutions\\Auth\\Providers\\C1SAuthRouteServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "CometOneSolutions\\Auth\\": "src/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "CometOneSolutions Dev Team",
+                    "email": "dev@cometonesolutions.com"
+                }
+            ],
+            "description": "C1S Authentication Library"
+        },
+        {
             "name": "cometonesolutions/common",
             "version": "1.0.21",
             "source": {
@@ -213,6 +321,217 @@
                 }
             ],
             "description": "C1S Common"
+        },
+        {
+            "name": "cometonesolutions/internal-accounts",
+            "version": "1.0.18",
+            "source": {
+                "type": "git",
+                "url": "https://gitlab.com/cometonesolutions/packages/internal-accounts.git",
+                "reference": "87d4a21312f214b6f509385df61e938569807e39"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://gitlab.com/api/v4/projects/24057061/packages/composer/archives/cometonesolutions/internal-accounts.zip?sha=87d4a21312f214b6f509385df61e938569807e39",
+                "reference": "87d4a21312f214b6f509385df61e938569807e39",
+                "shasum": ""
+            },
+            "require": {
+                "cometonesolutions/accounting": "^1.0.0",
+                "cometonesolutions/common": "^1.0.0",
+                "illuminate/console": ">=6.0",
+                "illuminate/queue": ">=6.0",
+                "illuminate/support": ">=6.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^4.0|^5.0|^6.0",
+                "phpunit/phpunit": "^8.0|^9.0",
+                "psy/psysh": "@stable"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "CometOneSolutions\\InternalAccounts\\Providers\\InternalAccountsServiceProvider",
+                        "CometOneSolutions\\InternalAccounts\\Providers\\InternalAccountsRouteServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "CometOneSolutions\\InternalAccounts\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "CometOneSolutions\\InternalAccounts\\Test\\": "tests"
+                }
+            },
+            "authors": [
+                {
+                    "name": "CometOneSolutions",
+                    "email": "dev@cometonesolutions.com"
+                }
+            ],
+            "description": "Internal Accounts backend module"
+        },
+        {
+            "name": "cometonesolutions/inventory",
+            "version": "1.0.13",
+            "source": {
+                "type": "git",
+                "url": "https://gitlab.com/cometonesolutions/packages/inventory.git",
+                "reference": "fc66c0b89cdff4a18b2486af797f688d7f1180ef"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://gitlab.com/api/v4/projects/23134098/packages/composer/archives/cometonesolutions/inventory.zip?sha=fc66c0b89cdff4a18b2486af797f688d7f1180ef",
+                "reference": "fc66c0b89cdff4a18b2486af797f688d7f1180ef",
+                "shasum": ""
+            },
+            "require": {
+                "cometonesolutions/common": "^1.0.0",
+                "illuminate/console": ">=6.0",
+                "illuminate/queue": ">=6.0",
+                "illuminate/support": ">=6.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^4.0|^5.0|^6.0",
+                "phpunit/phpunit": "^8.0|^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "CometOneSolutions\\Inventory\\Providers\\InventoryServiceProvider",
+                        "CometOneSolutions\\Inventory\\Providers\\InventoryRouteServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "CometOneSolutions\\Inventory\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "CometOneSolutions\\Inventory\\Test\\": "tests"
+                }
+            },
+            "authors": [
+                {
+                    "name": "CometOneSolutions",
+                    "email": "dev@cometonesolutions.com"
+                }
+            ],
+            "description": "Inventory backend module"
+        },
+        {
+            "name": "cometonesolutions/payables",
+            "version": "1.0.43",
+            "source": {
+                "type": "git",
+                "url": "https://gitlab.com/cometonesolutions/packages/payables.git",
+                "reference": "177b7b0db89e52f043755339d12f377d7757c8b3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://gitlab.com/api/v4/projects/23764633/packages/composer/archives/cometonesolutions/payables.zip?sha=177b7b0db89e52f043755339d12f377d7757c8b3",
+                "reference": "177b7b0db89e52f043755339d12f377d7757c8b3",
+                "shasum": ""
+            },
+            "require": {
+                "cometonesolutions/common": "^1.0.0",
+                "cometonesolutions/internal-accounts": "^1.0.0",
+                "illuminate/console": ">=6.0",
+                "illuminate/queue": ">=6.0",
+                "illuminate/support": ">=6.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^4.0|^5.0|^6.0",
+                "phpunit/phpunit": "^8.0|^9.0",
+                "psy/psysh": "@stable"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "CometOneSolutions\\Payables\\Providers\\PayablesServiceProvider",
+                        "CometOneSolutions\\Payables\\Providers\\PayablesRouteServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "CometOneSolutions\\Payables\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "CometOneSolutions\\Payables\\Test\\": "tests"
+                }
+            },
+            "authors": [
+                {
+                    "name": "CometOneSolutions",
+                    "email": "dev@cometonesolutions.com"
+                }
+            ],
+            "description": "Payables backend module"
+        },
+        {
+            "name": "cometonesolutions/receivables",
+            "version": "1.0.46",
+            "source": {
+                "type": "git",
+                "url": "https://gitlab.com/cometonesolutions/packages/receivables.git",
+                "reference": "7887bad59ea5d53136c3db14734f7cfd275ba389"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://gitlab.com/api/v4/projects/23950987/packages/composer/archives/cometonesolutions/receivables.zip?sha=7887bad59ea5d53136c3db14734f7cfd275ba389",
+                "reference": "7887bad59ea5d53136c3db14734f7cfd275ba389",
+                "shasum": ""
+            },
+            "require": {
+                "cometonesolutions/common": "^1.0.0",
+                "cometonesolutions/internal-accounts": "^1.0.0",
+                "illuminate/console": ">=6.0",
+                "illuminate/queue": ">=6.0",
+                "illuminate/support": ">=6.0"
+            },
+            "require-dev": {
+                "laravel/tinker": "^2.6",
+                "orchestra/testbench": "^4.0|^5.0|^6.0",
+                "phpunit/phpunit": "^8.0|^9.0",
+                "psy/psysh": "@stable"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "CometOneSolutions\\Receivables\\Providers\\ReceivablesServiceProvider",
+                        "CometOneSolutions\\Receivables\\Providers\\ReceivablesRouteServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "CometOneSolutions\\Receivables\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "CometOneSolutions\\Receivables\\Test\\": "tests"
+                }
+            },
+            "authors": [
+                {
+                    "name": "CometOneSolutions",
+                    "email": "dev@cometonesolutions.com"
+                }
+            ],
+            "description": "Receivables backend module"
         },
         {
             "name": "dasprid/enum",
@@ -260,6 +579,80 @@
                 "source": "https://github.com/DASPRiD/Enum/tree/1.0.3"
             },
             "time": "2020-10-02T16:03:48+00:00"
+        },
+        {
+            "name": "diglactic/laravel-breadcrumbs",
+            "version": "v6.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/diglactic/laravel-breadcrumbs.git",
+                "reference": "8f73674f9c5403625154768f8e123a620fc2d7a5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/diglactic/laravel-breadcrumbs/zipball/8f73674f9c5403625154768f8e123a620fc2d7a5",
+                "reference": "8f73674f9c5403625154768f8e123a620fc2d7a5",
+                "shasum": ""
+            },
+            "require": {
+                "facade/ignition-contracts": "^1.0",
+                "laravel/framework": "^6.0 || ^7.0 || ^8.0",
+                "php": "^7.2 || ^8.0"
+            },
+            "conflict": {
+                "davejamesmiller/laravel-breadcrumbs": "*"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^4.10 || ^5.9 || ^6.4",
+                "php-coveralls/php-coveralls": "^2.4",
+                "phpunit/phpunit": "^8.5 || ^9.4",
+                "spatie/phpunit-snapshot-assertions": "^2.2 || ^4.2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Diglactic\\Breadcrumbs\\ServiceProvider"
+                    ],
+                    "aliases": {
+                        "Breadcrumbs": "Diglactic\\Breadcrumbs\\Breadcrumbs"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Diglactic\\Breadcrumbs\\": "src/"
+                },
+                "files": [
+                    "src/deprecated.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sheng Slogar",
+                    "email": "sheng@diglactic.com",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Dave James Miller",
+                    "email": "dave@davejamesmiller.com",
+                    "role": "Original Creator"
+                }
+            ],
+            "description": "A simple Laravel-style way to create breadcrumbs.",
+            "homepage": "https://github.com/diglactic/laravel-breadcrumbs",
+            "keywords": [
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/diglactic/laravel-breadcrumbs/issues",
+                "source": "https://github.com/diglactic/laravel-breadcrumbs/tree/v6.1.1"
+            },
+            "time": "2021-04-12T18:06:07+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -618,6 +1011,59 @@
                 "source": "https://github.com/ezyang/htmlpurifier/tree/master"
             },
             "time": "2020-06-29T00:56:53+00:00"
+        },
+        {
+            "name": "facade/ignition-contracts",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/facade/ignition-contracts.git",
+                "reference": "3c921a1cdba35b68a7f0ccffc6dffc1995b18267"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/facade/ignition-contracts/zipball/3c921a1cdba35b68a7f0ccffc6dffc1995b18267",
+                "reference": "3c921a1cdba35b68a7f0ccffc6dffc1995b18267",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.3|^8.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^v2.15.8",
+                "phpunit/phpunit": "^9.3.11",
+                "vimeo/psalm": "^3.17.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Facade\\IgnitionContracts\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://flareapp.io",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Solution contracts for Ignition",
+            "homepage": "https://github.com/facade/ignition-contracts",
+            "keywords": [
+                "contracts",
+                "flare",
+                "ignition"
+            ],
+            "support": {
+                "issues": "https://github.com/facade/ignition-contracts/issues",
+                "source": "https://github.com/facade/ignition-contracts/tree/1.0.2"
+            },
+            "time": "2020-10-16T08:27:54+00:00"
         },
         {
             "name": "fideloper/proxy",
@@ -3720,6 +4166,84 @@
             "time": "2020-08-18T17:17:46+00:00"
         },
         {
+            "name": "spatie/laravel-permission",
+            "version": "4.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-permission.git",
+                "reference": "29c05324c170c0be108ccb86dd29f6a719c0a617"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/29c05324c170c0be108ccb86dd29f6a719c0a617",
+                "reference": "29c05324c170c0be108ccb86dd29f6a719c0a617",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/auth": "^6.0|^7.0|^8.0",
+                "illuminate/container": "^6.0|^7.0|^8.0",
+                "illuminate/contracts": "^6.0|^7.0|^8.0",
+                "illuminate/database": "^6.0|^7.0|^8.0",
+                "php": "^7.2.5|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^4.0|^5.0|^6.0",
+                "phpunit/phpunit": "^8.0|^9.0",
+                "predis/predis": "^1.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\Permission\\PermissionServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Permission\\": "src"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Permission handling for Laravel 6.0 and up",
+            "homepage": "https://github.com/spatie/laravel-permission",
+            "keywords": [
+                "acl",
+                "laravel",
+                "permission",
+                "permissions",
+                "rbac",
+                "roles",
+                "security",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/laravel-permission/issues",
+                "source": "https://github.com/spatie/laravel-permission/tree/4.0.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-03-22T18:38:29+00:00"
+        },
+        {
             "name": "staudenmeir/belongs-to-through",
             "version": "v2.11.1",
             "source": {
@@ -6495,59 +7019,6 @@
                 "source": "https://github.com/facade/ignition"
             },
             "time": "2021-05-05T06:45:12+00:00"
-        },
-        {
-            "name": "facade/ignition-contracts",
-            "version": "1.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/facade/ignition-contracts.git",
-                "reference": "3c921a1cdba35b68a7f0ccffc6dffc1995b18267"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/facade/ignition-contracts/zipball/3c921a1cdba35b68a7f0ccffc6dffc1995b18267",
-                "reference": "3c921a1cdba35b68a7f0ccffc6dffc1995b18267",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.3|^8.0"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "^v2.15.8",
-                "phpunit/phpunit": "^9.3.11",
-                "vimeo/psalm": "^3.17.1"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Facade\\IgnitionContracts\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Freek Van der Herten",
-                    "email": "freek@spatie.be",
-                    "homepage": "https://flareapp.io",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Solution contracts for Ignition",
-            "homepage": "https://github.com/facade/ignition-contracts",
-            "keywords": [
-                "contracts",
-                "flare",
-                "ignition"
-            ],
-            "support": {
-                "issues": "https://github.com/facade/ignition-contracts/issues",
-                "source": "https://github.com/facade/ignition-contracts/tree/1.0.2"
-            },
-            "time": "2020-10-16T08:27:54+00:00"
         },
         {
             "name": "fakerphp/faker",

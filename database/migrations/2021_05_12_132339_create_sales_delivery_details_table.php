@@ -20,6 +20,7 @@ class CreateSalesDeliveryDetailsTable extends Migration
             $table->foreignId('warehouse_product_id')->constrained('warehouse_products');
             $table->decimal('quantity', 15, 2);
             $table->integer('unit_price');
+            $table->integer('unit_cost');
             $table->integer('line_total');
             $table->timestamps();
         });

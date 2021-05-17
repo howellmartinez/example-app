@@ -20,4 +20,11 @@ class WarehouseProduct extends Model
     {
         return $this->belongsTo(Warehouse::class);
     }
+
+    public function updateStock()
+    {
+        // $this->pc_quantity = $this->itemMovements()->sum('pc_in') - $this->itemMovements()->sum('pc_out');
+        // $this->kg_quantity = $this->itemMovements()->sum('kg_in') - $this->itemMovements()->sum('kg_out');
+        $this->save();
+    }
 }

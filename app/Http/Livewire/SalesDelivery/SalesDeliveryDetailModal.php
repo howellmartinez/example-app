@@ -11,6 +11,7 @@ class SalesDeliveryDetailModal extends Component
     public $warehouseProductId = null;
     public $quantity = 0;
     public $unitPrice = 0;
+    public $unitCost = 0;
 
     public $listeners = ['showModal'];
     public $show = false;
@@ -29,9 +30,16 @@ class SalesDeliveryDetailModal extends Component
         return $this->quantity * $this->unitPrice;
     }
 
-    public function updatedProductId($val)
+    // public function updatedProductId($val)
+    // {
+    //     $this->unitPrice = Product::find($val)->unit_price;
+    // }
+
+    public function updatedWarehouseProductId($val)
     {
-        $this->unitPrice = Product::find($val)->unit_price;
+        $product = WarehouseProduct::with('product')->find($val)->product;
+        $this->unitPrice = $product->unit_price;
+        $this->unitCost = $product->unit_cost;
     }
 
     public function showModal($warehouseId, $index = null, $salesDeliveryDetail = null)
@@ -42,6 +50,7 @@ class SalesDeliveryDetailModal extends Component
                 'warehouseProductId' => $salesDeliveryDetail['warehouse_product_id'],
                 'quantity' => $salesDeliveryDetail['quantity'],
                 'unitPrice' => $salesDeliveryDetail['unit_price'],
+                'unitCost' => $salesDeliveryDetail['unit_cost'],
             ]);
         } else {
             $this->reset();
@@ -60,6 +69,7 @@ class SalesDeliveryDetailModal extends Component
             'quantity' => $this->quantity,
             'unit_price' => $this->unitPrice,
             'line_total' => $this->lineTotal,
+            'unit_cost' => $this->unitCost,
         ];
         if ($this->isEdit) {
             $this->emit('editSalesDeliveryDetail', $this->detailIndex, $payload);

@@ -15,13 +15,6 @@ class SalesOrderDetail extends Model
 
     protected $attributes = ['cancelled' => false, 'delivered' => 0];
 
-    // protected static function booted()
-    // {
-    //     static::creating(function ($model) {
-    //         $model->cancelled = false;
-    //     });
-    // }
-
     public function product()
     {
         return $this->belongsTo(Product::class);

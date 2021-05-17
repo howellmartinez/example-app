@@ -47,7 +47,7 @@ class SalesDeliveryTable extends Component
                 return $query->filterBy('search', "%{$this->search}%", 'like');
             })->when($this->sortField, function ($query) {
                 return $query->sortBy($this->sortField, $this->sortDirection);
-            })->paginate(20)
+            })->paginate()
         ]);
     }
 }

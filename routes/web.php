@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SalesOrderController;
 use App\Http\Controllers\SalesDeliveryController;
 
@@ -20,48 +21,30 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/projects', function () {
-    $projects = App\Models\Project::all();
-    return view('all_projects', [
-        'projects' => $projects
-    ]);
-});
+Route::get('/master-lists', function() {
+    return view('master_lists');
+})->name('master-lists');
 
-Route::get('/sales-deliveries', [SalesDeliveryController::class, 'index']);
-Route::get('/sales-deliveries/create', [SalesDeliveryController::class, 'create']);
-Route::get('/sales-deliveries/{salesDelivery}/edit', [SalesDeliveryController::class, 'edit']);
+Route::get('/sales-deliveries', [SalesDeliveryController::class, 'index'])->name('sales-delivery-index');
+Route::get('/sales-deliveries/create', [SalesDeliveryController::class, 'create'])->name('sales_delivery_create');
+Route::get('/sales-deliveries/{salesDelivery}/edit', [SalesDeliveryController::class, 'edit'])->name('sales_delivery_edit');
 Route::get('/sales-deliveries/{salesDelivery}', [SalesDeliveryController::class, 'show']);
 
-Route::get('/sales-orders', [SalesOrderController::class, 'index']);
+Route::get('/sales-orders', [SalesOrderController::class, 'index'])->name('sales-order-index');
 Route::get('/sales-orders/create', [SalesOrderController::class, 'create']);
 Route::get('/sales-orders/{salesOrder}/edit', [SalesOrderController::class, 'edit']);
 Route::get('/sales-orders/{salesOrder}', [SalesOrderController::class, 'show']);
 
-Route::get('/customers', [CustomerController::class, 'index']);
-Route::get('/customers/create', [CustomerController::class, 'create']);
-Route::get('/customers/{customer}/edit', [CustomerController::class, 'edit']);
-Route::get('/customers/{customer}', [CustomerController::class, 'show']);
+Route::get('/customers', [CustomerController::class, 'index'])->name('customer-index');
+Route::get('/customers/create', [CustomerController::class, 'create'])->name('customer_create');
+Route::get('/customers/{customer}/edit', [CustomerController::class, 'edit'])->name('customer_edit');
+Route::get('/customers/{customer}', [CustomerController::class, 'show'])->name('customer_show');
 
-Route::get('/projects/create', function () {
-    return view('create_project');
-});
-
-Route::post('/projects', function () {
-    App\Models\Project::create([
-        'name' => request()->input('name'),
-        'client' => request()->input('client'),
-        'description' => request()->input('description'),
-    ]);
-    redirect('/projects');
-});
-
-Route::get('/projects/{id}', function ($id) {
-    $project = App\Models\Project::find($id);
-    return view('individual_project', [
-        'project' => $project
-    ]);
-});
-
+Route::get('/products', [ProductController::class, 'index'])->name('product-index');
+Route::get('/products/create', [ProductController::class, 'create'])->name('product_create');
+Route::get('/products/{product}/movements', [ProductController::class, 'movements'])->name('product_movements');
+Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('product_edit');
+Route::get('/products/{product}', [ProductController::class, 'show'])->name('product_show');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

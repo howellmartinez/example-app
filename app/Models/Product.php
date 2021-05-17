@@ -2,12 +2,20 @@
 
 namespace App\Models;
 
+use CometOneSolutions\Inventory\Contracts\Inventory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+use App\Model\Traits\CanFilterBy;
+use App\Model\Traits\CanSortBy;
+
+
+class Product extends Model implements Inventory
 {
     use HasFactory;
+
+    use CanFilterBy;
+    use CanSortBy;
 
     protected static function booted()
     {
@@ -27,4 +35,23 @@ class Product extends Model
     {
         return $this->belongsToMany(Warehouse::class, 'warehouse_products');
     }
+
+    /*----- INVENTORY Begin -----*/
+    public function computeStock()
+    {
+
+    }
+
+    public function getStock()
+    {
+
+    }
+
+    public function updateStock()
+    {
+        // $this->setPcStock($this->computePcStock());
+        // $this->setKgStock($this->computeKgStock());
+        // $this->save();
+    }
+    /*----- INVENTORY End -----*/
 }

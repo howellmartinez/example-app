@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Livewire\SalesOrder;
+namespace App\Http\Livewire\Product;
 
 use Livewire\Component;
 use Livewire\WithPagination;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\SalesOrder;
+use App\Models\Product;
 use App\Http\Livewire\WithSorting;
 
-class SalesOrderTable extends Component
+class ProductTable extends Component
 {
     use WithPagination;
     use WithSorting;
@@ -20,10 +20,10 @@ class SalesOrderTable extends Component
 
     public $queryString = ['search'];
 
-    public function confirmDelete(SalesOrder $model)
+    public function confirmDelete(Product $product)
     {
         $this->confirmingDelete = true;
-        $this->toDelete = $model;
+        $this->toDelete = $product;
     }
 
     public function doDelete()
@@ -31,7 +31,7 @@ class SalesOrderTable extends Component
         $this->toDelete->delete();
         $this->toDelete = null;
         $this->confirmingDelete = false;
-        session()->flash('message', 'SalesOrder deleted.');
+        session()->flash('banner', 'Sales Order deleted.');
     }
 
     public function updatingSearch()
@@ -39,11 +39,15 @@ class SalesOrderTable extends Component
         $this->resetPage();
     }
 
+    public function delete(Product $product)
+    {
+        $product->delete();
+    }
+
     public function render()
     {
-        return view('livewire.sales-order.sales-order-table', [
-            'salesOrders' => SalesOrder::when($this->search, function ($query) {
-                // return $query->search("%{$this->search}%", 'like');
+        return view('livewire.product.product-table', [
+            'products' => Product::when($this->search, function ($query) {
                 return $query->filterBy('search', "%{$this->search}%", 'like');
             })->when($this->sortField, function ($query) {
                 return $query->sortBy($this->sortField, $this->sortDirection);
